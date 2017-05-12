@@ -8,7 +8,7 @@
 		<meta name="description" content="first backend project for freecodecamp.com"/>
 		<meta name="keywords" content="back end, python, flask, freecodecamp"/>
 		<meta name="author" content="Zachary Kearns" />
-		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 		<!--css-->
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"/> <!--CSS-->
 		<script type="text/javascript" src="{{ url_for('static', filename='js/html5shiv.js') }}"></script>
@@ -20,23 +20,31 @@
 <body>
    <header id="main-header">
       <div class="container">
-         <a href="#">
+         <a href="{{ url_for('index') }}">
          	<img src="{{ url_for('static', filename='images/logo.svg') }}" alt="main site logo" id="logo">
          </a>
          <img src="{{ url_for('static', filename='images/menu-button.svg') }}" alt="menu button" id="menu-button">
          <nav id="main-nav">
             <ul class="list-group">
-               <li><a class="menu-item" href="#">Sign Out</a></li>
-               <li><a class="menu-item" href="#">Sign Up</a></li>
-               <li><a class="menu-item" href="#">Log In</a></li>
-               <li><a class="menu-item" href="#">My Polls</a></li>
-               <li><a class="menu-item" href="#">New Poll</a></li>
-               <li><a class="menu-item" href="#">Home</a></li>
+					{% if not session.username %}
+						<li><a class="menu-item" href="{{ url_for('signup') }}">Sign up</a></li>
+    					<li><a class="menu-item" href="{{ url_for('login') }}">Log in</a></li>
+  					{% else %}
+    					<li><a class="menu-item" href="{{ url_for('logout') }}">Sign out</a></li>
+						<li><a class="menu-item" href="{{ url_for('mypolls') }}">My Polls</a></li>
+	               <li><a class="menu-item" href="{{ url_for('newpoll') }}">New Poll</a></li>
+  					{% endif %}
+               <li><a class="menu-item" href="{{ url_for('index') }}">Home</a></li>
             </ul>
          </nav>
       </div>
    </header>
-   {% block content %}
-   {% endblock %}
+	<main class="container">
+		{% block content %}
+	   {% endblock %}
+	</main>
+	<footer>
+		2017 Zachary Kearns
+	</footer>
 </body>
 </html>

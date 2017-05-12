@@ -1,11 +1,16 @@
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
-
 /*Place CSS and embedded Google Fonts Below this line*/
 @import url('https://fonts.googleapis.com/css?family=Lato');
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 
 /**
  * General Styles
  */
+
+html {
+   position: relative;
+   min-height: 100%;
+}
 
  body {
    font-family: Lato, Arial, Helvetica, sans-serif;
@@ -18,6 +23,12 @@ a {
 .container {
   max-width: 940px;
   margin: 0 auto;
+}
+
+h1 {
+   padding: 30px 0;
+   font-size: 60px;
+   text-align: center;
 }
 
 /**
@@ -92,6 +103,43 @@ a {
 	clear: both;
 }
 
+.error {
+   color: red;
+   padding: 5px 0;
+}
+
+.flashes {
+   width: 300px;
+   margin: 0 auto;
+}
+
+.text-input,
+.label {
+   display: block;
+   width: 100%;
+}
+
+.label {
+   padding-top: 15px;
+}
+
+.text-input {
+   border: none;
+   border-bottom: 2px solid #000;
+   background-color: transparent;
+   font-size: 16px;
+   padding: 5px 0;
+}
+
+:focus {
+   outline: none;
+}
+
+.submit {
+   width: 40%;
+   margin: 20px 0;
+}
+
 /**
  * Header
  */
@@ -122,10 +170,10 @@ a {
 
 .menu-item {
    color: #FFF;
-   font-family: 'Maven Pro Light', sans-serif;
    font-size: 16px;
    float: right;
    margin-left: 30px;
+   padding-bottom: 5px;
 }
 
 #menu-button {
@@ -133,215 +181,37 @@ a {
 }
 
 /**
- * Intro
+ * Signup
  */
 
-#intro {
-   background: url(../images/bg.png);
-   color: #FFF;
-}
-
-#intro > .container {
-   background: url(../images/skyline.png);
-   background-size: 100% 100%;
-   min-height: 580px;
-}
-
-#intro-content {
-   max-width: 70%;
+#signup {
+   max-width: 300px;
    margin: 0 auto;
 }
 
-#intro-heading {
-   font-size: 84px;
-   font-family: Oswald, sans-serif;
-   padding-top: 85px;
-}
+/**
+ * Login
+ */
 
-#intro-subheading {
-   font-size: 24px;
-   font-family: 'Maven Pro Light', sans-serif;
-   padding-top: 15px;
-   margin-left: 34px;
-}
-
-#intro-btn-container {
+#login {
+   max-width: 300px;
    margin: 0 auto;
-   max-width: 50%;
-   text-align: center;
-   padding-top: 260px;
-   padding-bottom: 70px;
-}
-
-#intro-btn {
-   font-family: 'Open Sans', sans-serif;
-   font-size: 16px;
-   border: 1px solid #FFF;
-   padding: 11px 20px;
-}
-
-#intro-btn:hover {
-   background: #000;
-}
-
-/**
- * Services
- */
-
-.service-group-container {
-    padding-bottom: 90px;
-    overflow: hidden;
-}
-
-.service-group {
-   margin-top: 37px;
-}
-
-.icon-container {
-   width: 60px;
-}
-
-.service-content {
-   margin-left: 70px;
-   margin-top: 40px;
-}
-
-.service-heading {
-   font-family: 'Maven Pro Light', sans-serif;
-   font-size: 26px;
-}
-
-.service-p {
-   color: #808080;
-   margin-left: 5px;
-   margin-top: 5px;
-}
-
-.service-p, #portfolio-content h4 {
-   font-family: 'Open Sans', sans-serif;
-   font-size: 16px;
-}
-
-/**
- * Portfolio
- */
-
-#portfolio {
-   background: #E8E8E8;
-   overflow: hidden;
-}
-
-#portfolio-content {
-   padding-top: 55px;
-}
-
-#portfolio-content h3 {
-   font-family: 'Maven Pro Light', sans-serif;
-   font-size: 26px;
-}
-
-#portfolio-content h4 {
-   color: #4D4D4D;
-   padding-top: 35px;
-}
-
-#portfolio-btn-container {
-   text-align: center;
-   padding-top: 130px;
-}
-
-#portfolio-btn {
-   font-family: 'Open Sans', sans-serif;
-   font-size: 16px;
-   background: #000;
-   padding: 11px 20px;
-   color: #FFF;
-}
-
-#macbook img {
-   width: 100%;
-   padding: 55px 0;
-}
-
-/**
- * Get in Touch
- */
-
-#get-in-touch h2 {
-    padding-top: 85px;
-}
-
-#get-in-touch h3 {
-   font-family: 'Maven Pro Light', sans-serif;
-   font-size: 24px;
-   color: #4D4D4D;
-   padding-top: 45px;
-   padding-bottom: 50px;
-   margin-left: 20px;
-}
-
-form {
-   max-width: 66%;
-   margin: 0 auto;
-}
-
-input, textarea {
-   display: block;
-   width: 100%;
-   margin-bottom: 20px;
-   border: 1px solid #E8E8E8;
-   font-family: 'Open Sans', sans-serif;
-   font-size: 16px;
-   color: #999999;
-   padding: 0 16px;
-   box-sizing: border-box;
-   -moz-box-sizing: border-box;
-   -webkit-box-sizing: border-box;
-}
-
-input {
-   height: 40px;
-}
-
-textarea {
-   height: 220px;
-   resize: none;
-   padding-top: 8px;
-}
-
-#send-button {
-   max-width: 140px;
-   border: none;
-   background: #000;
-   color: #FFF;
-   padding: 0;
-   margin-bottom: 108px;
-}
-
-.social-icon-container {
-  word-spacing: -5px;
-  width: 320px;
-  margin-top: 100px;
-  padding-bottom: 55px;
-  margin: 0 auto;
-}
-
-.social-icon-container img {
-  margin: 0 10px;
 }
 
 /**
  * Footer
  */
 
- footer {
-    text-align: center;
-    height: 80px;
-    line-height: 80px;
-    background: #E8E8E8;
-    font-family: 'Maven Pro Light', sans-serif;
-    color: #4D4D4D;
-    font-size: 16px;
+footer {
+   height: 80px;
+   line-height: 80px;
+   text-align: center;
+   background: lightgray;
+   position: absolute;
+   width: 100%;
+   left: 0;
+   bottom: 0;
+   overflow:hidden;
 }
 
 /* override jquery */
@@ -363,19 +233,6 @@ textarea {
       margin: 1%;
       padding: 1%;
       float: none;
-   }
-
-   #macbook img {
-      padding-bottom: 0;
-   }
-
-   #portfolio-content {
-      padding-top: 30px;
-   }
-
-   #portfolio-btn-container {
-      padding-top: 55px;
-      padding-bottom: 90px;
    }
 }
 
@@ -409,36 +266,8 @@ textarea {
       margin-left: 30px;
    }
 
-   #get-in-touch h2 {
-      font-size: 75px;
-   }
-
    .col13, .col23, .col12, .col14, .col34, .col15, .col16, .col112 {
       width: 96%;
       float: none;
-   }
-}
-
-@media screen and (max-width: 480px) {
-   #get-in-touch h2 {
-      font-size: 60px
-   }
-}
-
-@media screen and (max-width: 380px) {
-   .heading {
-      font-size: 60px;
-   }
-
-   #get-in-touch h2 {
-      font-size: 50px;
-   }
-
-   .social-icon-container {
-     width: 280px;
-   }
-
-   .social-icon-container img {
-     margin: 0 5px;
    }
 }
