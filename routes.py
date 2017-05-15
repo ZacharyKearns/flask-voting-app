@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, \
      session, redirect, url_for, flash
-from models import db, User
-from forms import SignupForm, LoginForm
+from models import db, User, Poll
+from forms import SignupForm, LoginForm, NewPollForm
 
 app = Flask(__name__)
 
@@ -14,7 +14,13 @@ app.secret_key = "development-key"
 
 @app.route("/")
 def index():
-    return render_template("index.html.j2")
+    polls = Poll.query.all()
+    return render_template("index.html.j2", polls=polls)
+
+@app.route("/poll/<int:id>")
+def poll(id):
+    poll = Poll.query.filter_by(id=id).first()
+    return render_template('poll.html.j2', poll=poll)
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
@@ -62,17 +68,48 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
-@app.route('/newpoll')
+@app.route('/newpoll', methods=['GET', 'POST'])
 def newpoll():
     if 'username' not in session:
         return redirect(url_for('login'))
-    return render_template('newpoll.html.j2')
+    form = NewPollForm()
+    if request.method == 'POST':
+        if form.validate() == False:
+            return render_template('newpoll.html.j2', form=form)
+        else:
+            user = User.query.filter_by(username=session['username']).first()
+            newpoll = Poll(form.name.data, form.options.data, user.uid)
+            db.session.add(newpoll)
+            db.session.commit()
+            flash('Poll added.')
+            return redirect(url_for('newpoll'))
+    elif request.method == 'GET':
+        return render_template('newpoll.html.j2', form=form)
+
+@app.route('/deletepoll/<int:id>')
+def deletepoll(id):
+    poll = Poll.query.filter_by(id=id).first()
+    user = User.query.filter_by(uid=poll.user_id).first()
+    if session['username'] != user.username:
+        flash['Request Denied.']
+        return redirect(url_for('login'))
+    else:
+        db.session.delete(poll)
+        db.session.commit()
+        return redirect(url_for('mypolls'))
 
 @app.route('/mypolls')
 def mypolls():
     if 'username' not in session:
         return redirect(url_for('login'))
-    return render_template('mypolls.html.j2')
+
+    user = User.query.filter_by(username=session['username']).first()
+    polls = Poll.query.filter_by(user_id=user.uid).all()
+
+    if len(polls) == 0:
+        polls = False
+
+    return render_template('mypolls.html.j2', polls=polls)
 
 if __name__ == "__main__":
     app.run(debug = True)

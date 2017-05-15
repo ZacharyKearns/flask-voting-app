@@ -1,5 +1,31 @@
 {% extends "layout.html.j2" %}
 
 {% block content %}
-<h1>My Polls</h1>
+   <h1>My Polls</h1>
+   {% if polls %}
+      <table>
+         <thead>
+            <th>Name</th>
+            <th>Options</th>
+            <th>Delete Poll</th>
+            <th>View Poll</th>
+         </thead>
+         <tbody>
+            {% for poll in polls %}
+               <tr>
+                  <td>{{ poll.name }}</td>
+                  <td>{{ poll.options }}</td>
+                  <td>
+                     <a href="{{ url_for('poll', id = poll.id) }}">View</a>
+                  </td>
+                  <td>
+                     <a href="{{ url_for('deletepoll', id = poll.id) }}">Delete</a>
+                  </td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   {% else %}
+      <p>No polls to show.</p>
+   {% endif %}
 {% endblock %}

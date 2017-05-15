@@ -20,6 +20,10 @@ a {
   text-decoration: none;
 }
 
+main.container {
+   margin-bottom: 160px;
+}
+
 .container {
   max-width: 940px;
   margin: 0 auto;
@@ -108,13 +112,20 @@ h1 {
    padding: 5px 0;
 }
 
+.success {
+   color: lightblue;
+   padding: 5px 0;
+}
+
 .flashes {
    width: 300px;
    margin: 0 auto;
 }
 
 .text-input,
-.label {
+.label,
+.textarea,
+.textarea-label {
    display: block;
    width: 100%;
 }
@@ -181,6 +192,26 @@ h1 {
 }
 
 /**
+ * Index
+ */
+
+ .poll-list {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.poll-link {
+   color: #000;
+   text-decoration: none;
+   font-size: 20px;
+   padding: 15px 0;
+   display: block;
+   margin: 5px 0;
+   border: 2px solid #000;
+}
+
+/**
  * Signup
  */
 
@@ -197,6 +228,44 @@ h1 {
    max-width: 300px;
    margin: 0 auto;
 }
+
+/**
+ * New Poll
+ */
+
+ #newpoll {
+   max-width: 300px;
+   margin: 0 auto;
+ }
+
+ .textarea {
+   border: 2px solid #000;
+   background-color: transparent;
+   font-size: 16px;
+   padding: 5px 0;
+   margin-top: 25px;
+ }
+
+ .textarea-label {
+   padding-top: 15px;
+ }
+
+/**
+ * My Polls
+ */
+
+ table {
+    max-width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin: 0 auto;
+ }
+
+ th, td {
+    padding: 12px;
+    border: 1px solid #333;
+ }
 
 /**
  * Footer

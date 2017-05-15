@@ -1,5 +1,37 @@
 {% extends "layout.html.j2" %}
 
 {% block content %}
-<h1>Create a new poll</h1>
+   <h1>Create a new poll</h1>
+
+   {% with messages = get_flashed_messages() %}
+      {% if messages %}
+         <ul class="flashes">
+         {% for message in messages %}
+            <li class="success">{{ message }}</li>
+         {% endfor %}
+         </ul>
+      {% endif %}
+   {% endwith %}
+
+   <form action="/newpoll" method="POST" id="newpoll">
+      {{ form.hidden_tag() }}
+
+      {{ form.name.label(class="label") }}
+      {% if form.name.errors %}
+         {% for error in form.name.errors %}
+            <p class="error">{{ error }}</p>
+         {% endfor %}
+      {% endif %}
+      {{ form.name(class="text-input") }}
+
+      {{ form.options.label(class="textarea-label") }}
+      {% if form.options.errors %}
+         {% for error in form.options.errors %}
+            <p class="error">{{ error }}</p>
+         {% endfor %}
+      {% endif %}
+      {{ form.options(class="textarea") }}
+
+      {{ form.submit(class="submit") }}
+   </form>
 {% endblock %}

@@ -8,6 +8,7 @@ class User(db.Model):
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
     pwdhash = db.Column(db.String(30))
+    user = db.relationship('Poll', backref='user')
 
     def __init__(self, username, password):
         self.username = username
@@ -18,3 +19,15 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.pwdhash, password)
+
+class Poll(db.Model):
+    __tablename__ = 'polls'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text())
+    options = db.Column(db.Text())
+    user_id = db.Column(db.Integer, db.ForeignKey('users.uid'))
+
+    def __init__(self, name, options, user_id):
+        self.name = name
+        self.options = options
+        self.user_id = user_id
