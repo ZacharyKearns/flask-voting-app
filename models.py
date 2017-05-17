@@ -8,7 +8,7 @@ class User(db.Model):
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
     pwdhash = db.Column(db.String(30))
-    user = db.relationship('Poll', backref='user')
+    polls = db.relationship('Poll', backref='user')
 
     def __init__(self, username, password):
         self.username = username

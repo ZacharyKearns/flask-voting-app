@@ -2,9 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.widgets import TextArea
-from unique import Unique
 from models import User, Poll
-from options import Options
+from custom_validators import Unique, Options
 
 class SignupForm(FlaskForm):
     username = StringField('Username', \

@@ -2,11 +2,26 @@
 
 {% block content %}
    <h1>Home Page</h1>
-   <ul class="poll-list">
-      {% for poll in polls %}
-         <li>
-            <a class="poll-link" href="{{ url_for('poll', id = poll.id) }}">{{ poll.name }}</a>
-         </li>
-      {% endfor %}
-   </ul>
+
+   {% with messages = get_flashed_messages() %}
+      {% if messages %}
+         <ul class="flashes">
+         {% for message in messages %}
+            <li class="error">{{ message }}</li>
+         {% endfor %}
+         </ul>
+      {% endif %}
+   {% endwith %}
+
+   {% if polls %}
+      <ul class="poll-list">
+         {% for poll in polls %}
+            <li>
+               <a class="poll-link" href="{{ url_for('routes.poll', id = poll.id) }}">{{ poll.name }}</a>
+            </li>
+         {% endfor %}
+      </ul>
+   {% else %}
+      <p>No polls to show.</p>
+   {% endif %}
 {% endblock %}

@@ -7,6 +7,7 @@
          <thead>
             <th>Name</th>
             <th>Options</th>
+            <th>Total Votes</th>
             <th>Delete Poll</th>
             <th>View Poll</th>
          </thead>
@@ -14,12 +15,19 @@
             {% for poll in polls %}
                <tr>
                   <td>{{ poll.name }}</td>
-                  <td>{{ poll.options }}</td>
                   <td>
-                     <a href="{{ url_for('poll', id = poll.id) }}">View</a>
+                     <ul>
+                        {% for option in poll.options %}
+                           <li>- {{ option.option }}</li>
+                        {% endfor %}
+                     </ul>
+                  </td>
+                  <td>{{ votes }}</td>
+                  <td>
+                     <a href="{{ url_for('routes.poll', id=poll.id) }}">View</a>
                   </td>
                   <td>
-                     <a href="{{ url_for('deletepoll', id = poll.id) }}">Delete</a>
+                     <a href="{{ url_for('routes.deletepoll', id=poll.id) }}">Delete</a>
                   </td>
                </tr>
             {% endfor %}
