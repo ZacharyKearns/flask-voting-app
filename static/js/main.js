@@ -7,11 +7,11 @@ $(function() {
 
    $(window).resize(reverseNav);
 
-   $('.poll-name').after(
-      '<a href="' +
+   $('#twitter').attr(
+      'href',
       'https://twitter.com/home?status=Vote%20on%20this%20awesome%20poll!%20' +
       window.location.href +
-      '%20%23freeCodeCamp"> Share On Twitter</a>'
+      '%20%23freeCodeCamp'
    );
 
    var labels = [];

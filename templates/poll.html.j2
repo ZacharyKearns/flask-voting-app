@@ -49,6 +49,9 @@
          {% endif %}
       </div>
       <div class="col12 fl">
+         {% if session['username'] %}
+            <a id="twitter" href="#">Share On Twitter</a>
+         {% endif %}
          <canvas id="chart"></canvas>
       </div>
    {% else %}
