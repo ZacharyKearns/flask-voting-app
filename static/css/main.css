@@ -35,6 +35,10 @@ h1 {
    text-align: center;
 }
 
+h2, .no-polls {
+   margin-left: 30px;
+}
+
 /**
  * Columns
  */
@@ -281,6 +285,12 @@ h1 {
    max-width: 50%;
    margin: 0 auto;
 }
+
+#custom-option {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
 
 /**
  * Footer

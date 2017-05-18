@@ -4,34 +4,54 @@
    <h1>Poll</h1>
    {% if poll %}
       <h2 class="poll-name">{{ poll.name }}</h2>
-      {% with messages = get_flashed_messages() %}
-         {% if messages %}
-            <ul class="poll-flashes">
-            {% for message in messages %}
-               <li class="error">{{ message }}</li>
-            {% endfor %}
-            </ul>
+      <div class="col12 fl">
+         {% with messages = get_flashed_messages() %}
+            {% if messages %}
+               <ul class="poll-flashes">
+               {% for message in messages %}
+                  <li class="error">{{ message }}</li>
+               {% endfor %}
+               </ul>
+            {% endif %}
+         {% endwith %}
+         <table>
+            <thead>
+               <th>Option</th>
+               <th>Votes</th>
+               <th>Vote</th>
+            </thead>
+            <tbody>
+               {% for option in poll.options %}
+                  <tr>
+                     <td class="option">{{ option.option }}</td>
+                     <td class="votes">{{ option.votes }}</td>
+                     <td>
+                        <a href="{{ url_for('routes.vote', id=poll.id, option=option.option) }}">Vote</a>
+                     </td>
+                  </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+         {% if session['username'] %}
+            <form action="{{ url_for('routes.poll', id=poll.id) }}" method="POST" id="custom-option">
+               {{ form.hidden_tag() }}
+
+               {{ form.option.label(class="label") }}
+               {% if form.option.errors %}
+                  {% for error in form.option.errors %}
+                     <p class="error">{{ error }}</p>
+                  {% endfor %}
+               {% endif %}
+               {{ form.option(class="text-input") }}
+
+               {{ form.submit(class="submit") }}
+            </form>
          {% endif %}
-      {% endwith %}
-      <table>
-         <thead>
-            <th>Option</th>
-            <th>Votes</th>
-            <th>Vote</th>
-         </thead>
-         <tbody>
-            {% for option in poll.options %}
-               <tr>
-                  <td>{{ option.option }}</td>
-                  <td>{{ option.votes }}</td>
-                  <td>
-                     <a href="{{ url_for('routes.vote', id=poll.id, option=option.option) }}">Vote</a>
-                  </td>
-               </tr>
-            {% endfor %}
-         </tbody>
-      </table>
+      </div>
+      <div class="col12 fl">
+         <canvas id="chart"></canvas>
+      </div>
    {% else %}
-      <p>Poll doesn't exist.</p>
+      <p class="no-polls">Poll doesn't exist.</p>
    {% endif %}
 {% endblock %}
